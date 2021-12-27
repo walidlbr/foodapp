@@ -1,13 +1,15 @@
-const express = require('express');
-const app = express();
-const expressLayouts = require ('express-ejs-layouts');
-const indexRouter = require('./routes/index');
+const express = require('express')
+const app = express()
+const expressLayouts = require ('express-ejs-layouts')
 
-app.use(expressLayouts);
-app.set('view engine','ejs');
+const indexRouter = require('./routes/index')
 
-app.use(express.static('public'));
+app.use(expressLayouts)
+app.set('view engine','ejs')
+app.set('views',__dirname + '/views')
+app.set('layout','layouts/layout')
+app.use(express.static('public'))
 
-app.use('/',indexRouter);
+app.use('/',indexRouter)
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000,() => console.log('App is listening on url http://localhost:3000'));
